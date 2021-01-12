@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/aa7e161c3e.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&family=Sofia&display=swap" rel="stylesheet">
+
+    <style>
+
+        body {
+            margin-top: 5rem;
+            background-color: #3fd6c2;
+        }
+
+        form div {
+            margin: 20px 0;
+        }
+
+        h1 {
+            font-family: 'Sofia', cursive;
+        }
+
+        label, input, button {
+            font-family: 'Montserrat', sans-serif;
+              }
+
+        
+        .correct {
+            color: #009900;
+            font-size: 20px;
+        }
+
+        .wrong {
+            color: #990000;
+            font-size: 20px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+              </div>
+            <div class="col-sm-6 col align-self-center">
+
+                <h1>The Easiest Hardest Quiz</h1>
+
+                <form>
+                    <div>
+                        <label for="question1" class="form-label">1. What is your name?</label>
+                        <input type="text" class="form-control" name="question1" id="question1"
+                            placeholder="Take a guess...">
+                    </div>
+                    <div id="grade1"></div>
+                    <div>
+                        <label for="question2" class="form-label">2. What is your quest?</label>
+                        <input type="text" class="form-control" name="question2" id="question2" placeholder="Take a guess...">
+                    </div>
+                    <div id="grade2"></div>
+                    <div>
+                        <label for="question3" class="form-label">3. What is your favorite color?</label>
+                        <input type="text" class="form-control" name="question3" id="question3" placeholder="Take a guess...">
+                    </div>
+                    <div id="grade3"></div>
+                    <div>
+                        <label for="question4" class="form-label">4. What is the meaning of life?</label>
+                        <input type="text" class="form-control"  name="question4" id="question4" placeholder="Take a guess...">
+                    </div>
+                    <div id="grade4"></div>
+                    <div>
+                        <label for="question5" class="form-label">5. To be or not to _ ?</label>
+                        <input type="text" class="form-control" name="question5" id="question5" placeholder="Take a guess...">
+                    </div>
+                    <div id="grade5"></div>
+                </form>
+                <p>
+                    <button type="button" id="gradeBtn" class="btn btn-primary">Grade Quiz</button>
+                    <button type="button" class="btn btn-outline-secondary" id="resetBtn">Clear Answers</button>
+                </p>
+            </div>
+            <div class="col">
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+      
+
+        document.getElementById("gradeBtn").addEventListener('click', checkAnswer);
+        document.getElementById("resetBtn").addEventListener('click', resetForm);
+
+        function checkAnswer() {
+
+            let answers = ["Savannah", "The Holy Grail", "Blue", "42", "be"];
+        
+            for (var i = 0; i < answers.length; i++) {
+
+                let fieldId = i + 1;
+               
+                let question = document.getElementById('question' + fieldId).value;
+                let grade = document.getElementById('grade' + fieldId);
+
+                if (question == answers[i]) {
+                    // it's right
+                    // alert('correct');
+
+                    grade.innerHTML = '<i class="far fa-thumbs-up correct"></i>';
+                } else {
+                    //it's wrong
+                    // alert('wrong');
+
+                    grade.innerHTML = '<i class="far fa-thumbs-down wrong"></i>';
+
+                }
+            }
+        }
+
+        function resetForm() {
+
+            document.getElementById('question1').value = ' ';
+            document.getElementById('question1').innerHTML = ' ';
+            document.getElementById('grade1').innerHTML = ' ';
+
+            document.getElementById('question2').value = ' ';
+            document.getElementById('question2').innerHTML = ' ';
+            document.getElementById('grade2').innerHTML = ' ';
+
+            document.getElementById('question3').value = ' ';
+            document.getElementById('question3').innerHTML = ' ';
+            document.getElementById('grade3').innerHTML = ' ';
+
+            document.getElementById('question4').value = ' ';
+            document.getElementById('question4').innerHTML = ' ';
+            document.getElementById('grade4').innerHTML = ' ';
+        
+            document.getElementById('question5').value = ' ';
+            document.getElementById('question5').innerHTML = ' ';
+            document.getElementById('grade5').innerHTML = ' ';
+        }
+
+  /*     first attempt, for reference, no reset
+                let answers = ["Savannah", "The Holy Grail", "Blue", "42", "be"];
+        
+                document.getElementById("gradeBtn").addEventListener('click', function () {
+        
+                    /* if (document.getElementById("question1").value == answers[0]) {
+                         document.getElementById("question1").add('class1');
+                     } else {
+                         document.getElementById("question1").remove('class1').add('class2');
+                     }
+        
+                    if (document.getElementById("question2").value == answers[1]) {
+                        // console.log("me too");
+                        document.getElementById("question2").style.backgroundColor = 'mediumseagreen';
+                        document.getElementById("question2").style.color = 'white';
+                        document.getElementById("question2").style.borderStyle = 'none';
+                    } else {
+                        document.getElementById('question2').style.backgroundColor = 'red'
+                    }
+        
+                    if (document.getElementById("question3").value == answers[2]) {
+                        //console.log("me three");
+                        document.getElementById("question3").style.backgroundColor = 'mediumseagreen';
+                        document.getElementById("question3").style.color = 'white';
+                        document.getElementById("question3").style.borderStyle = 'none';
+                    }
+        
+                    if (document.getElementById("question4").value == answers[3]) {
+                        //console.log("me four");
+                        document.getElementById("question4").style.backgroundColor = 'mediumseagreen';
+                        document.getElementById("question4").style.color = 'white';
+                        document.getElementById("question4").style.borderStyle = 'none';
+                    }
+        
+                    if (document.getElementById("question5").value == answers[4]) {
+                        //console.log("me five");
+                        document.getElementById("question5").style.backgroundColor = 'mediumseagreen';
+                        document.getElementById("question5").style.color = 'white';
+                        document.getElementById("question5").style.borderStyle = 'none';
+                    }
+                    });
+        */
+        //alert(document.getElementById("question1").value);
+
+    </script>
+</body>
+
+</html>
